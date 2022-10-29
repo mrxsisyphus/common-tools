@@ -1,0 +1,1 @@
+{"level":"\u001b[33mWARN\u001b[0m","ts":"2022-10-25 13:25:13","caller":"log/logger.go:99","msg":"Error fetching URL www : Error = error url"}
