@@ -33,6 +33,36 @@ func Fatal(msg string, args ...zap.Field) {
 	globalLogger.zapLogger.Fatal(msg, args...)
 }
 
+func Debugln(args ...interface{}) {
+	LoggerMsg := fmt.Sprintln(args...)
+	globalLogger.zapLogger.Debug(LoggerMsg)
+}
+
+func Infoln(args ...interface{}) {
+	LoggerMsg := fmt.Sprintln(args...)
+	globalLogger.zapLogger.Info(LoggerMsg)
+}
+
+func Warnln(args ...interface{}) {
+	LoggerMsg := fmt.Sprintln(args...)
+	globalLogger.zapLogger.Warn(LoggerMsg)
+}
+
+func Errorln(args ...interface{}) {
+	LoggerMsg := fmt.Sprintln(args...)
+	globalLogger.zapLogger.Error(LoggerMsg)
+}
+
+func Panicln(args ...interface{}) {
+	LoggerMsg := fmt.Sprintln(args...)
+	globalLogger.zapLogger.Panic(LoggerMsg)
+}
+
+func Fatalln(args ...interface{}) {
+	LoggerMsg := fmt.Sprintln(args...)
+	globalLogger.zapLogger.Fatal(LoggerMsg)
+}
+
 func Debugf(format string, args ...interface{}) {
 	LoggerMsg := fmt.Sprintf(format, args...)
 	globalLogger.zapLogger.Debug(LoggerMsg)
@@ -62,6 +92,7 @@ func Fatalf(format string, args ...interface{}) {
 	LoggerMsg := fmt.Sprintf(format, args...)
 	globalLogger.zapLogger.Fatal(LoggerMsg)
 }
+
 func (l *Logger) Debug(msg string, args ...zap.Field) {
 	l.zapLogger.Debug(msg, args...)
 }
@@ -84,6 +115,36 @@ func (l *Logger) Panic(msg string, args ...zap.Field) {
 
 func (l *Logger) Fatal(msg string, args ...zap.Field) {
 	l.zapLogger.Fatal(msg, args...)
+}
+
+func (l *Logger) Debugln(args ...interface{}) {
+	LoggerMsg := fmt.Sprintln(args...)
+	l.zapLogger.Debug(LoggerMsg)
+}
+
+func (l *Logger) Infoln(args ...interface{}) {
+	LoggerMsg := fmt.Sprintln(args...)
+	l.zapLogger.Info(LoggerMsg)
+}
+
+func (l *Logger) Warnln(args ...interface{}) {
+	LoggerMsg := fmt.Sprintln(args...)
+	l.zapLogger.Warn(LoggerMsg)
+}
+
+func (l *Logger) Errorln(args ...interface{}) {
+	LoggerMsg := fmt.Sprintln(args...)
+	l.zapLogger.Error(LoggerMsg)
+}
+
+func (l *Logger) Panicln(args ...interface{}) {
+	LoggerMsg := fmt.Sprintln(args...)
+	l.zapLogger.Panic(LoggerMsg)
+}
+
+func (l *Logger) Fatalln(args ...interface{}) {
+	LoggerMsg := fmt.Sprintln(args...)
+	l.zapLogger.Fatal(LoggerMsg)
 }
 
 func (l *Logger) Debugf(format string, args ...interface{}) {
