@@ -2,8 +2,8 @@ package commonArrOperation
 
 import (
 	"fmt"
-	"github.com/mrxtryagain/common-tools/collection_helper"
-	"github.com/mrxtryagain/common-tools/optional"
+	"github.com/mrxtryagin/common-tools/collection_helper"
+	"github.com/mrxtryagin/common-tools/optional"
 )
 
 /**

@@ -1,4 +1,4 @@
-module github.com/mrxtryagain/common-tools
+module github.com/mrxtryagin/common-tools
 
 go 1.19
 

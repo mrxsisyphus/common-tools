@@ -2,9 +2,9 @@ package random_helper
 
 import (
 	"fmt"
-	"github.com/mrxtryagain/common-tools/collection_helper"
-	"github.com/mrxtryagain/common-tools/error_helper"
-	"github.com/mrxtryagain/common-tools/search_helper"
+	"github.com/mrxtryagin/common-tools/collection_helper"
+	"github.com/mrxtryagin/common-tools/error_helper"
+	"github.com/mrxtryagin/common-tools/search_helper"
 	"golang.org/x/exp/maps"
 	"math"
 	"math/rand"

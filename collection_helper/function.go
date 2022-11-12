@@ -8,8 +8,8 @@ package collection_helper
 
 import (
 	"fmt"
-	"github.com/mrxtryagain/common-tools/convert_helper"
-	"github.com/mrxtryagain/common-tools/optional"
+	"github.com/mrxtryagin/common-tools/convert_helper"
+	"github.com/mrxtryagin/common-tools/optional"
 	"sort"
 	"strings"
 )

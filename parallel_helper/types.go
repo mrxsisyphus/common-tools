@@ -3,7 +3,7 @@ package parallel_helper
 import (
 	"context"
 	"errors"
-	"github.com/mrxtryagain/common-tools/logger"
+	"github.com/mrxtryagin/common-tools/logger"
 	"runtime"
 	"time"
 )

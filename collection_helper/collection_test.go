@@ -2,8 +2,8 @@ package collection_helper
 
 import (
 	"fmt"
-	"github.com/mrxtryagain/common-tools/stream"
-	"github.com/mrxtryagain/common-tools/stream/types"
+	"github.com/mrxtryagin/common-tools/stream"
+	"github.com/mrxtryagin/common-tools/stream/types"
 	"math"
 	"strconv"
 	"testing"

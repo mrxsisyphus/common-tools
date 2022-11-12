@@ -13,8 +13,8 @@ import (
 	"github.com/monitor1379/yagods/stacks/linkedliststack"
 	"github.com/monitor1379/yagods/trees/binaryheap"
 	"github.com/monitor1379/yagods/utils"
-	"github.com/mrxtryagain/common-tools/collection_helper"
-	"github.com/mrxtryagain/common-tools/optional"
+	"github.com/mrxtryagin/common-tools/collection_helper"
+	"github.com/mrxtryagin/common-tools/optional"
 )
 
 /**

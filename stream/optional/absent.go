@@ -1,7 +1,7 @@
 package optional
 
 import (
-	"github.com/mrxtryagain/common-tools/stream/types"
+	"github.com/mrxtryagin/common-tools/stream/types"
 )
 
 type absent int

@@ -2,8 +2,8 @@ package stream
 
 import (
 	"errors"
-	"github.com/mrxtryagain/common-tools/stream/optional"
-	"github.com/mrxtryagain/common-tools/stream/types"
+	"github.com/mrxtryagin/common-tools/stream/optional"
+	"github.com/mrxtryagin/common-tools/stream/types"
 	"reflect"
 )
 

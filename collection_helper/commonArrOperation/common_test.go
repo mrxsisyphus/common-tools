@@ -2,7 +2,7 @@ package commonArrOperation
 
 import (
 	"fmt"
-	"github.com/mrxtryagain/common-tools/collection_helper"
+	"github.com/mrxtryagin/common-tools/collection_helper"
 	"reflect"
 	"strconv"
 	"strings"

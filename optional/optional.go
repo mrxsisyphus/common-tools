@@ -3,7 +3,7 @@ package optional
 import (
 	"errors"
 	"fmt"
-	"github.com/mrxtryagain/common-tools/common_helper"
+	"github.com/mrxtryagin/common-tools/common_helper"
 )
 
 type Optional[T any] struct {
