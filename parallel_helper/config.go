@@ -1,11 +1,11 @@
 package parallel_helper
 
 import (
-	"common-tools/collection_helper"
-	"common-tools/random_helper"
 	"context"
 	"errors"
 	"fmt"
+	"github.com/mrxtryagain/common-tools/collection_helper"
+	"github.com/mrxtryagain/common-tools/random_helper"
 	"github.com/panjf2000/ants/v2"
 	"golang.org/x/sync/semaphore"
 	"math"

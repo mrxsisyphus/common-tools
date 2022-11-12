@@ -1,8 +1,8 @@
 package logger
 
 import (
-	"common-tools/time_helper"
 	"errors"
+	"github.com/mrxtryagain/common-tools/time_helper"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"io"

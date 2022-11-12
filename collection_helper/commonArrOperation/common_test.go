@@ -1,8 +1,8 @@
 package commonArrOperation
 
 import (
-	"common-tools/collection_helper"
 	"fmt"
+	"github.com/mrxtryagain/common-tools/collection_helper"
 	"reflect"
 	"strconv"
 	"strings"

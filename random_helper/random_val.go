@@ -1,10 +1,10 @@
 package random_helper
 
 import (
-	"common-tools/collection_helper"
-	"common-tools/error_helper"
-	"common-tools/search_helper"
 	"fmt"
+	"github.com/mrxtryagain/common-tools/collection_helper"
+	"github.com/mrxtryagain/common-tools/error_helper"
+	"github.com/mrxtryagain/common-tools/search_helper"
 	"golang.org/x/exp/maps"
 	"math"
 	"math/rand"

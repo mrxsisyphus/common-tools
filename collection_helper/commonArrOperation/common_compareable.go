@@ -1,8 +1,6 @@
 package commonArrOperation
 
 import (
-	"common-tools/collection_helper"
-	"common-tools/optional"
 	"fmt"
 	mapset "github.com/deckarep/golang-set/v2"
 	"github.com/monitor1379/yagods/lists/arraylist"
@@ -15,6 +13,8 @@ import (
 	"github.com/monitor1379/yagods/stacks/linkedliststack"
 	"github.com/monitor1379/yagods/trees/binaryheap"
 	"github.com/monitor1379/yagods/utils"
+	"github.com/mrxtryagain/common-tools/collection_helper"
+	"github.com/mrxtryagain/common-tools/optional"
 )
 
 /**

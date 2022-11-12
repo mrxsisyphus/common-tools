@@ -1,9 +1,9 @@
 package parallel_helper
 
 import (
-	"common-tools/logger"
 	"context"
 	"errors"
+	"github.com/mrxtryagain/common-tools/logger"
 	"runtime"
 	"time"
 )

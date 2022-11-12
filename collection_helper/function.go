@@ -7,9 +7,9 @@ package collection_helper
 */
 
 import (
-	"common-tools/convert_helper"
-	"common-tools/optional"
 	"fmt"
+	"github.com/mrxtryagain/common-tools/convert_helper"
+	"github.com/mrxtryagain/common-tools/optional"
 	"sort"
 	"strings"
 )

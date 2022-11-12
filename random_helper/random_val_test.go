@@ -1,9 +1,9 @@
 package random_helper
 
 import (
-	"common-tools/collection_helper"
-	"common-tools/string_helper"
 	"fmt"
+	"github.com/mrxtryagain/common-tools/collection_helper"
+	"github.com/mrxtryagain/common-tools/string_helper"
 	"math"
 	"math/rand"
 	"strconv"

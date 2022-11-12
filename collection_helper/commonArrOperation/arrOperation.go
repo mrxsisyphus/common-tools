@@ -1,8 +1,6 @@
 package commonArrOperation
 
 import (
-	"common-tools/collection_helper"
-	"common-tools/optional"
 	mapset "github.com/deckarep/golang-set/v2"
 	"github.com/monitor1379/yagods/lists/arraylist"
 	"github.com/monitor1379/yagods/lists/doublylinkedlist"
@@ -13,6 +11,8 @@ import (
 	"github.com/monitor1379/yagods/stacks/arraystack"
 	"github.com/monitor1379/yagods/stacks/linkedliststack"
 	"github.com/monitor1379/yagods/trees/binaryheap"
+	"github.com/mrxtryagain/common-tools/collection_helper"
+	"github.com/mrxtryagain/common-tools/optional"
 )
 
 // ArrAbsOperation  数组操作,有些情况会直接panic

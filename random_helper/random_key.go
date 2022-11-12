@@ -1,9 +1,9 @@
 package random_helper
 
 import (
-	"common-tools/convert_helper"
 	"fmt"
 	"github.com/gofrs/uuid"
+	"github.com/mrxtryagain/common-tools/convert_helper"
 	"time"
 )
 

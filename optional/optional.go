@@ -1,9 +1,9 @@
 package optional
 
 import (
-	"common-tools/common_helper"
 	"errors"
 	"fmt"
+	"github.com/mrxtryagain/common-tools/common_helper"
 )
 
 type Optional[T any] struct {

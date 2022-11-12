@@ -1,9 +1,9 @@
 package stream_test
 
 import (
-	"common-tools/stream"
-	"common-tools/types"
 	"fmt"
+	"github.com/mrxtryagain/common-tools/stream"
+	"github.com/mrxtryagain/common-tools/types"
 	"reflect"
 	"sort"
 	"testing"

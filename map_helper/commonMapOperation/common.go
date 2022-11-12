@@ -1,8 +1,6 @@
 package commonMapOperation
 
 import (
-	"common-tools/convert_helper"
-	"common-tools/map_helper"
 	"encoding/json"
 	"fmt"
 	mapset "github.com/deckarep/golang-set/v2"
@@ -10,6 +8,8 @@ import (
 	"github.com/monitor1379/yagods/sets/linkedhashset"
 	"github.com/monitor1379/yagods/sets/treeset"
 	"github.com/monitor1379/yagods/utils"
+	"github.com/mrxtryagain/common-tools/convert_helper"
+	"github.com/mrxtryagain/common-tools/map_helper"
 )
 
 type MapOperation[K comparable, V any] struct {

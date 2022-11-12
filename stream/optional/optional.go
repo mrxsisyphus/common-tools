@@ -1,8 +1,8 @@
 package optional
 
 import (
-	"common-tools/stream/types"
 	"errors"
+	"github.com/mrxtryagain/common-tools/stream/types"
 	"reflect"
 )
 

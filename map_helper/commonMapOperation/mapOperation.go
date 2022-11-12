@@ -1,11 +1,11 @@
 package commonMapOperation
 
 import (
-	"common-tools/map_helper"
 	mapset "github.com/deckarep/golang-set/v2"
 	"github.com/monitor1379/yagods/sets/hashset"
 	"github.com/monitor1379/yagods/sets/linkedhashset"
 	"github.com/monitor1379/yagods/sets/treeset"
+	"github.com/mrxtryagain/common-tools/map_helper"
 )
 
 // refer: https://blog.csdn.net/qq_43679056/article/details/104976819

@@ -1,4 +1,4 @@
-module common-tools
+module github.com/mrxtryagain/common-tools
 
 go 1.19
 
@@ -13,7 +13,6 @@ require (
 	golang.org/x/exp v0.0.0-20220303212507-bbda1eaf7a17
 	golang.org/x/sync v0.0.0-20220722155255-886fb9371eb4
 	gopkg.in/ini.v1 v1.67.0
-	gopkg.in/yaml.v2 v2.4.0
 	gopkg.in/yaml.v3 v3.0.1
 )
 

@@ -1,10 +1,10 @@
 package commonMapOperation
 
 import (
-	"common-tools/collection_helper"
-	"common-tools/collection_helper/commonArrOperation"
-	"common-tools/random_helper"
 	"fmt"
+	"github.com/mrxtryagain/common-tools/collection_helper"
+	"github.com/mrxtryagain/common-tools/collection_helper/commonArrOperation"
+	"github.com/mrxtryagain/common-tools/random_helper"
 	"strconv"
 	"testing"
 )

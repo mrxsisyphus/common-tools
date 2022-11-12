@@ -1,7 +1,7 @@
 package stream
 
 import (
-	"common-tools/stream/types"
+	"github.com/mrxtryagain/common-tools/stream/types"
 	"reflect"
 )
 

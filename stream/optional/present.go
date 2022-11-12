@@ -1,6 +1,6 @@
 package optional
 
-import "common-tools/stream/types"
+import "github.com/mrxtryagain/common-tools/stream/types"
 
 type present struct {
 	value types.T

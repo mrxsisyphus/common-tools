@@ -1,11 +1,11 @@
 package parallel_helper
 
 import (
-	"common-tools/collection_helper/commonArrOperation"
-	"common-tools/convert_helper"
 	"context"
 	"fmt"
 	"github.com/imroc/req/v3"
+	"github.com/mrxtryagain/common-tools/collection_helper/commonArrOperation"
+	"github.com/mrxtryagain/common-tools/convert_helper"
 	"github.com/panjf2000/ants/v2"
 	"io"
 	"net/http"
