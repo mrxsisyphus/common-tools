@@ -50,7 +50,7 @@ func TestChoice(t *testing.T) {
 	})
 	fmt.Printf("%+v\n", isDistinct)
 	// 不会改变原来的序列
-	//fmt.Printf("%+v\n", people)
+	//fmt.Infof("%+v\n", people)
 
 }
 

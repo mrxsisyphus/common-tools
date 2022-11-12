@@ -29,7 +29,7 @@ var (
 func init() {
 
 	//go func() {
-	//	log.Println(http.ListenAndServe(":6060", nil))
+	//	logger.Println(http.ListenAndServe(":6060", nil))
 	//}()
 	client = req.C().
 		DisableAutoDecode()
@@ -76,7 +76,7 @@ func TestDefaultParallelWorkReq_Wait(t *testing.T) {
 	//	now := runtime.NumGoroutine()
 	//	fmt.Println("NumGoroutine:", now)
 	//	if now == before {
-	//		fmt.Printf("恢复正常的协程数花费了: %f s\n", time.Since(beforeTime).Seconds())
+	//		fmt.Infof("恢复正常的协程数花费了: %f s\n", time.Since(beforeTime).Seconds())
 	//		break
 	//	}
 	//	time.Sleep(2 * time.Second)
@@ -125,7 +125,7 @@ func TestDefaultParallelWorkReq_WaitWithPreemptiveForFirstN(t *testing.T) {
 		WithParallelSize(100),
 		WithIsMixed(false),
 	)
-	//fmt.Printf("%+v\n", *req)
+	//fmt.Infof("%+v\n", *req)
 	before := runtime.NumGoroutine()
 
 	fmt.Println("NumGoroutine:", before)
@@ -222,7 +222,7 @@ https://wanghe4096.github.io/2019/03/13/avoiding-memory-leak-in-golang-api/
 */
 func GetBangumiSubject(ctx context.Context, index int) (string, error) {
 	url := fmt.Sprintf("%s/v0/subjects/%d", "https://api.bgm.tv", index)
-	//fmt.Printf("request %s \n", url)
+	//fmt.Infof("request %s \n", url)
 	get, err := client.R().
 		SetContext(ctx).
 		Get(url)

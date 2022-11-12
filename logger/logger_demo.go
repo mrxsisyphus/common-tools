@@ -1,4 +1,4 @@
-package main
+package logger
 
 import (
 	"common-tools/time_helper"
@@ -59,7 +59,7 @@ func getEncoderConfig() *zapcore.EncoderConfig {
 
 // getLogWriter 配置日志输出的位置
 func getLogWriter() zapcore.WriteSyncer {
-	file, _ := os.Create("./test.log")
+	file, _ := os.Create("./test.logger")
 	// 利用io.MultiWriter 同时输出到多个位置,也可以用 zapcore.NewMultiWriteSyncer()
 	writer := io.MultiWriter(os.Stdout, file)
 	//zapcore.NewMultiWriteSyncer()

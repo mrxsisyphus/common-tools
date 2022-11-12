@@ -3,7 +3,6 @@ package io_helpder
 import (
 	"bufio"
 	"io"
-	"io/ioutil"
 	"os"
 )
 
@@ -16,13 +15,12 @@ const (
 )
 
 // ReadWholeFile 阅读整个文件
-func ReadWholeFile(filePath string) (*[]byte, error) {
-	content, err := ioutil.ReadFile(filePath)
-	return &content, err
+func ReadWholeFile(filePath string) ([]byte, error) {
+	return os.ReadFile(filePath)
 }
 
-// ReadFileByChunk 按照chunk 阅读文件
-func ReadFileByChunk(filePath string) (*[]byte, error) {
+// ReadFileByChunk 按照chunk大小读取文件
+func ReadFileByChunk(filePath string) ([]byte, error) {
 	f, err := os.Open(filePath)
 	if err != nil {
 		return nil, err
@@ -47,11 +45,11 @@ func ReadFileByChunk(filePath string) (*[]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-	return &chunks, nil
+	return chunks, nil
 }
 
 // ReadFileByLine 按照行来读取文件(字符串文本)
-func ReadFileByLine(filePath string) (*[]string, error) {
+func ReadFileByLine(filePath string) ([]string, error) {
 	file, err := os.Open(filePath)
 	if err != nil {
 		return nil, err
@@ -74,18 +72,18 @@ func ReadFileByLine(filePath string) (*[]string, error) {
 	if err != nil {
 		return nil, err
 	}
-	return &results, nil
+	return results, nil
 }
 
 // WriteFileCustom 写入content 使用 自定义的flag
-func WriteFileCustom(content *[]byte, filePath string, flag int) error {
+func WriteFileCustom(content []byte, filePath string, flag int) error {
 	file, err := os.OpenFile(filePath, flag, 0666)
 	if err != nil {
 		return err
 	}
 	//也可以用File.Write
 	writer := bufio.NewWriter(file)
-	_, err = writer.Write(*content)
+	_, err = writer.Write(content)
 	if err != nil {
 		return err
 	}
@@ -102,6 +100,6 @@ func WriteFileCustom(content *[]byte, filePath string, flag int) error {
 }
 
 // WriteFileOverWrite 直接覆盖写 不存在创建,存在清空写入
-func WriteFileOverWrite(content *[]byte, filePath string) error {
-	return os.WriteFile(filePath, *content, 0666)
+func WriteFileOverWrite(content []byte, filePath string) error {
+	return os.WriteFile(filePath, content, 0666)
 }

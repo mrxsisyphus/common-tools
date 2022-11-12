@@ -114,7 +114,7 @@ func ExampleOf() {
 	fmt.Println(stream.Of("a", "b").Count())
 	var s = []int{1, 2, 3, 4}
 	stream.Of(stream.Slice(s)...).ForEach(func(t types.T) {
-		fmt.Printf("%d,", t)
+		fmt.Infof("%d,", t)
 	})
 	// Output:
 	// 0
@@ -126,11 +126,11 @@ func ExampleOf() {
 func ExampleOfSlice() {
 	var intArr = []int{1, 2, 3, 4}
 	stream.OfSlice(intArr).ForEach(func(e types.T) {
-		fmt.Printf("%d,", e)
+		fmt.Infof("%d,", e)
 	})
 	var nilArr []int
 	stream.OfSlice(nilArr).ForEach(func(e types.T) {
-		fmt.Printf("should not print")
+		fmt.Infof("should not print")
 	})
 	var strArr = []string{"a", "b"}
 	stream.OfSlice(strArr).
@@ -138,7 +138,7 @@ func ExampleOfSlice() {
 			return fmt.Sprintf("<%s>", e)
 		}).
 		ForEach(func(e types.T) {
-			fmt.Printf("%s,", e)
+			fmt.Infof("%s,", e)
 		})
 	// Output:
 	// 1,2,3,4,<a>,<b>,
@@ -190,7 +190,7 @@ func ExampleStream_Map() {
 			return fmt.Sprintf("<%d>", t.(int))
 		}).
 		ForEach(func(t types.T) {
-			fmt.Printf("%v", t)
+			fmt.Infof("%v", t)
 		})
 	// Output:
 	// <0><1><2><3><4>
@@ -201,7 +201,7 @@ func ExampleStream_FlatMap() {
 			return stream.Of(stream.Slice(t)...)
 		}).
 		ForEach(func(t types.T) {
-			fmt.Printf("%d", t)
+			fmt.Infof("%d", t)
 		})
 	// Output:
 	// 0246813579
@@ -210,7 +210,7 @@ func ExampleStream_Sorted() {
 	stream.IntRange(1, 10).
 		Sorted(types.ReverseOrder(types.IntComparator)).
 		ForEach(func(t types.T) {
-			fmt.Printf("%d,", t)
+			fmt.Infof("%d,", t)
 		})
 	// Output:
 	// 9,8,7,6,5,4,3,2,1,

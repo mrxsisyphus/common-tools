@@ -87,7 +87,7 @@ func NewDefaultParallelWorkReq[R any](ctx context.Context, workers []DefaultWork
 		req.ParallelSize = len(workers)
 	}
 	if req.Options.Logger == nil {
-		req.Options.Logger = defaultLogger
+		req.Options.Logger = defaultLogger2
 	}
 	if req.Options.BeforeStartHook == nil {
 		req.Options.BeforeStartHook = defaultBeforeStartHook
@@ -126,7 +126,7 @@ func (req *DefaultParallelWorkReq[R]) Gather() []*ResultUnit[R] {
 	var (
 		wg sync.WaitGroup
 	)
-	req.Options.Logger.Printf("task[Id=%s]-%s gather start..\n", req.Id, req.Desc)
+	req.Options.Logger.Infof("task[Id=%s]-%s gather start..\n", req.Id, req.Desc)
 	now := time.Now()
 	//beforeHook
 	req.Options.BeforeStartHook(req.Ctx)
@@ -163,7 +163,7 @@ func (req *DefaultParallelWorkReq[R]) Gather() []*ResultUnit[R] {
 	// 直到结束为止
 	wg.Wait()
 	cost := time.Since(now).Milliseconds()
-	req.Options.Logger.Printf("task[Id=%s]-%s gather end cost:%d ms\n", req.Id, req.Desc, cost)
+	req.Options.Logger.Infof("task[Id=%s]-%s gather end cost:%d ms\n", req.Id, req.Desc, cost)
 	req.Options.FinishHook(req.Ctx) // 结束钩子
 	return result
 }
@@ -176,7 +176,7 @@ func (req *DefaultParallelWorkReq[R]) Gather() []*ResultUnit[R] {
 // refer2: https://www.jianshu.com/p/e481064aeab4
 func (req *DefaultParallelWorkReq[R]) Wait() ([]*ResultUnit[R], error) {
 
-	req.Options.Logger.Printf("task[Id=%s]-%s wait start..\n", req.Id, req.Desc)
+	req.Options.Logger.Infof("task[Id=%s]-%s wait start..\n", req.Id, req.Desc)
 	now := time.Now() // 当前时间
 	//beforeHook
 	//beforeHook
@@ -209,13 +209,13 @@ func (req *DefaultParallelWorkReq[R]) Wait() ([]*ResultUnit[R], error) {
 			select {
 			// 超时的话
 			case <-req.Ctx.Done():
-				//req.Options.Logger.Printf("消费者退出...\n")
+				//req.Options.Logger.Infof("消费者退出...\n")
 				//消费者退出前通知生产者
 				close(stopCh)
 				return // 退出消费者
 			case res, isOk := <-resultChan: // resultChan 被关闭,直接退出;resultChan 没有被关闭,被pending很长一段时间,也会由于前面的退出
 				if !isOk {
-					//req.Options.Logger.Printf("resultChan 被关闭...,不再接受数据 \n")
+					//req.Options.Logger.Infof("resultChan 被关闭...,不再接受数据 \n")
 					//被关闭,直接返回
 					return
 				} else {
@@ -240,7 +240,7 @@ L:
 		index := i
 		select {
 		case <-req.Ctx.Done(): // Ctx 控制退出 wait的关键
-			req.Options.Logger.Printf("task[Id=%s]-%s wait exit[ctx done]...\n", req.Id, req.Desc)
+			req.Options.Logger.Infof("task[Id=%s]-%s wait exit[ctx done]...\n", req.Id, req.Desc)
 			break L // 退出外循环
 		// 先使用select保证并发数不至于过大(保证在parallel内)
 		case <-limiter:
@@ -267,7 +267,7 @@ L:
 	close(resultChan) //关闭resultChan  这里需要做,不然上面的消费者没办法退出
 	<-mergeDone       // 这里主要是等消费完成,防止消费过慢的情况
 	cost := time.Since(now).Milliseconds()
-	req.Options.Logger.Printf("task[Id=%s]-%s wait end cost:%d ms\n", req.Id, req.Desc, cost)
+	req.Options.Logger.Infof("task[Id=%s]-%s wait end cost:%d ms\n", req.Id, req.Desc, cost)
 	req.Options.FinishHook(req.Ctx) // 结束钩子
 	return result, nil
 
@@ -281,7 +281,7 @@ L:
 // 更符合抢占式的要求,看哪个协程先抢到,哪个来
 func (req *DefaultParallelWorkReq[R]) WaitWithPreemptive() ([]*ResultUnit[R], error) {
 
-	req.Options.Logger.Printf("task[Id=%s]-%s waitWithPreemptive start..\n", req.Id, req.Desc)
+	req.Options.Logger.Infof("task[Id=%s]-%s waitWithPreemptive start..\n", req.Id, req.Desc)
 	now := time.Now() // 当前时间
 	//beforeHook
 	//beforeHook
@@ -311,13 +311,13 @@ func (req *DefaultParallelWorkReq[R]) WaitWithPreemptive() ([]*ResultUnit[R], er
 			select {
 			// 超时的话
 			case <-req.Ctx.Done():
-				//req.Options.Logger.Printf("消费者退出...\n")
+				//req.Options.Logger.Infof("消费者退出...\n")
 				//消费者退出前通知生产者
 				close(stopCh)
 				return // 退出消费者
 			case res, isOk := <-resultChan: // resultChan 被关闭,直接退出;resultChan 没有被关闭,被pending很长一段时间,也会由于前面的退出
 				if !isOk {
-					//req.Options.Logger.Printf("resultChan 被关闭...,不再接受数据 \n")
+					//req.Options.Logger.Infof("resultChan 被关闭...,不再接受数据 \n")
 					//被关闭,直接返回
 					return
 				} else {
@@ -342,7 +342,7 @@ L:
 		index := i
 		select {
 		case <-req.Ctx.Done(): // 这里意义不是很大
-			req.Options.Logger.Printf("task[Id=%s]-%s wait exit[ctx done]...\n", req.Id, req.Desc)
+			req.Options.Logger.Infof("task[Id=%s]-%s wait exit[ctx done]...\n", req.Id, req.Desc)
 			break L // 退出外循环
 		default:
 			//默认协程全部启动
@@ -383,7 +383,7 @@ L:
 	close(resultChan) //关闭resultChan  这里需要做,不然上面的消费者没办法退出
 	<-mergeDone       // 这里主要是等消费完成,防止消费过慢的情况
 	cost := time.Since(now).Milliseconds()
-	req.Options.Logger.Printf("task[Id=%s]-%s waitWithPreemptive end cost:%d ms\n", req.Id, req.Desc, cost)
+	req.Options.Logger.Infof("task[Id=%s]-%s waitWithPreemptive end cost:%d ms\n", req.Id, req.Desc, cost)
 	req.Options.FinishHook(req.Ctx) // 结束钩子
 	return result, nil
 
@@ -395,7 +395,7 @@ func (req *DefaultParallelWorkReq[R]) SimpleWaitWithPreemptiveForFirstN(firstN i
 	if firstN == 0 {
 		return nil, ErrFirstN
 	}
-	req.Options.Logger.Printf("task[Id=%s]-%s simpleWaitWithPreemptive start..\n", req.Id, req.Desc)
+	req.Options.Logger.Infof("task[Id=%s]-%s simpleWaitWithPreemptive start..\n", req.Id, req.Desc)
 	now := time.Now() // 当前时间
 	//beforeHook
 	req.Options.BeforeStartHook(req.Ctx)
@@ -449,7 +449,7 @@ func (req *DefaultParallelWorkReq[R]) SimpleWaitWithPreemptiveForFirstN(firstN i
 			}()
 		}
 	}
-	//req.Options.Logger.Printf("workers end \n")
+	//req.Options.Logger.Infof("workers end \n")
 	// 单消费者 不使用waitgroup手段,其实也可以用waitgroup 限定死firstN个就行
 	// 但是取消逻辑再消费者这一点是不可避免的
 	// 最大的问题是没有人关闭resultChan,如果resultCHan 阻塞了消费者,就没办法走了(关键点)[用信号量的话就可以解决这个点
@@ -458,23 +458,23 @@ func (req *DefaultParallelWorkReq[R]) SimpleWaitWithPreemptiveForFirstN(firstN i
 		select {
 		// 超时的话
 		case <-req.Ctx.Done():
-			req.Options.Logger.Printf("消费者退出...\n")
+			req.Options.Logger.Infof("消费者退出...\n")
 			//消费者退出前通知生产者
 			close(stopCh)
 			return result, req.Ctx.Err()
 			//return
 		case res := <-resultChan:
 			//res 一定不会被关闭
-			//req.Options.Logger.Printf("running: %d \n", pool.Running())
+			//req.Options.Logger.Infof("running: %d \n", pool.Running())
 			// 正常的话 append
 			result = append(result, res)
 			//判断是否满足了firstN了
 			// 消费者就这一个所以可以直接比较
 			if len(result) >= firstN {
-				req.Options.Logger.Printf("消费者已接收到数量 %d,退出 \n", firstN)
+				req.Options.Logger.Infof("消费者已接收到数量 %d,退出 \n", firstN)
 				close(stopCh) // 退出之后,如果没办法退,使用这个
 				cost := time.Since(now).Milliseconds()
-				req.Options.Logger.Printf("task[Id=%s]-%s simpleWaitWithPreemptive end cost:%d ms\n", req.Id, req.Desc, cost)
+				req.Options.Logger.Infof("task[Id=%s]-%s simpleWaitWithPreemptive end cost:%d ms\n", req.Id, req.Desc, cost)
 				req.Options.FinishHook(req.Ctx) // 结束钩子
 				return result, nil
 				//return
@@ -491,7 +491,7 @@ func (req *DefaultParallelWorkReq[R]) WaitWithPreemptiveForFirstN(firstN int) ([
 	if firstN == 0 {
 		return nil, ErrFirstN
 	}
-	req.Options.Logger.Printf("task[Id=%s]-%s waitWithPreemptiveForFirstN start..\n", req.Id, req.Desc)
+	req.Options.Logger.Infof("task[Id=%s]-%s waitWithPreemptiveForFirstN start..\n", req.Id, req.Desc)
 	now := time.Now() // 当前时间
 	//beforeHook
 	req.Options.BeforeStartHook(req.Ctx)
@@ -531,7 +531,7 @@ func (req *DefaultParallelWorkReq[R]) WaitWithPreemptiveForFirstN(firstN int) ([
 			select {
 			// 超时的话
 			case <-req.Ctx.Done():
-				//req.Options.Logger.Printf("消费者退出...\n")
+				//req.Options.Logger.Infof("消费者退出...\n")
 				//消费者退出前通知生产者
 				close(stopCh)
 				return // 退出消费者
@@ -542,7 +542,7 @@ func (req *DefaultParallelWorkReq[R]) WaitWithPreemptiveForFirstN(firstN int) ([
 				// 在这里release
 				sem.Release(1)
 				if len(result) >= firstN {
-					req.Options.Logger.Printf("消费者已接收到数量 %d,退出 \n", firstN)
+					req.Options.Logger.Infof("消费者已接收到数量 %d,退出 \n", firstN)
 					//消费者退出前通知生产者
 					close(stopCh)
 					return
@@ -560,7 +560,7 @@ L:
 		index := i
 		select {
 		case <-req.Ctx.Done(): // 这里意义不是很大
-			req.Options.Logger.Printf("task[Id=%s]-%s wait exit[ctx done]...\n", req.Id, req.Desc)
+			req.Options.Logger.Infof("task[Id=%s]-%s wait exit[ctx done]...\n", req.Id, req.Desc)
 			break L // 退出外循环
 		default:
 			f := func() {
@@ -578,7 +578,7 @@ L:
 
 		}
 	}
-	//req.Options.Logger.Printf("workers end \n")
+	//req.Options.Logger.Infof("workers end \n")
 	// 请求所有的worker,会wait 直到之前的搞完 或者接受一个错误,
 	// 这就是 使用这个 而不使用waitGroup的原因,原因就是这里可以接受一个ctx的done事件
 	err := sem.Acquire(req.Ctx, int64(firstN))
@@ -590,7 +590,7 @@ L:
 	//close(resultChan) //关闭resultChan  这里需要做,不然上面的消费者没办法退出
 	//<-mergeDone // 这里主要是等消费完成,防止消费过慢的情况
 	cost := time.Since(now).Milliseconds()
-	req.Options.Logger.Printf("task[Id=%s]-%s waitWithPreemptiveForFirstN end cost:%d ms\n", req.Id, req.Desc, cost)
+	req.Options.Logger.Infof("task[Id=%s]-%s waitWithPreemptiveForFirstN end cost:%d ms\n", req.Id, req.Desc, cost)
 	req.Options.FinishHook(req.Ctx) // 结束钩子
 	return result, nil
 
@@ -623,7 +623,7 @@ func (req *DefaultParallelWorkReq[R]) gatherWork0(index int, handler *DefaultWor
 				result[index] = resultUnit //塞回去
 			} else {
 				// panic 处理
-				req.Options.Logger.Printf("%s panic: %v\n", handler.workerId, panicErr)
+				req.Options.Logger.Infof("%s panic: %v\n", handler.workerId, panicErr)
 			}
 			//panic 钩子
 			req.Options.PanicWorkerHook(req.Ctx, panicErr)
@@ -683,7 +683,7 @@ func (req *DefaultParallelWorkReq[R]) waitWork0(index int, handler *DefaultWorke
 				}
 			} else {
 				// panic 处理
-				req.Options.Logger.Printf("%s panic: %v\n", handler.workerId, panicErr)
+				req.Options.Logger.Infof("%s panic: %v\n", handler.workerId, panicErr)
 			}
 			//panic 钩子
 			req.Options.PanicWorkerHook(req.Ctx, panicErr)

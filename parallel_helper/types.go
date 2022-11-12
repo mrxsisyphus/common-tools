@@ -1,10 +1,9 @@
 package parallel_helper
 
 import (
+	"common-tools/logger"
 	"context"
 	"errors"
-	"log"
-	"os"
 	"runtime"
 	"time"
 )
@@ -93,13 +92,14 @@ const (
 )
 
 type Logger interface {
-	// Printf must have the same semantics as log.Printf.
-	Printf(format string, args ...interface{})
+	// Infof must have the same semantics as logger.Infof.
+	Infof(format string, args ...interface{})
 }
 
 var (
 	//defaultLogger 默认日志
-	defaultLogger = Logger(log.New(os.Stdout, "", log.LstdFlags))
+	//defaultLogger  = Logger(log.New(os.Stdout, "", log.LstdFlags))
+	defaultLogger2 = logger.GetLogger()
 
 	defaultBeforeStartHook = func(ctx context.Context) {
 		return

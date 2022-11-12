@@ -35,7 +35,7 @@ func TestDelete(t *testing.T) {
 	fmt.Println(unsafe.Pointer(&old)) //0x1400012c090
 	//旧切片 指向的底层数组的信息
 	fmt.Printf("old 底层数组: %v, len: %d cap: %d ,pointer: %p\n", old, len(old), cap(old), old) //0x1400011e1c0
-	//fmt.Printf("old底层数组地址:%d", getSliceOrigianalAddress(old))
+	//fmt.Infof("old底层数组地址:%d", getSliceOrigianalAddress(old))
 	//对切片做删除 删除index =2的元素
 	// 分成前半后半,它们与old一样 指向底层数组(软拷贝)
 	//前半的切片地址
@@ -43,7 +43,7 @@ func TestDelete(t *testing.T) {
 	//前半的切片地址
 	fmt.Println(unsafe.Pointer(&before))                                                                    //0x1400012c0d8
 	fmt.Printf("before 底层数组: %v, len: %d cap: %d ,pointer: %p\n", before, len(before), cap(before), before) //0x1400011e1c0 与旧的一致
-	//fmt.Printf("before底层数组地址:%d", getSliceOrigianalAddress(before))
+	//fmt.Infof("before底层数组地址:%d", getSliceOrigianalAddress(before))
 	// refer: https://zhuanlan.zhihu.com/p/526731603
 	// 直接切片可能会触发产生新的底层数组(因为cap不一样)
 	//新切片的 容量(cap) 即为开始下标到原 slice 数据容量结束, 即"cap(a) - low"
@@ -55,7 +55,7 @@ func TestDelete(t *testing.T) {
 	//后半的切片地址
 	fmt.Println(unsafe.Pointer(&after))
 	fmt.Printf("after 底层数组: %v, len: %d cap: %d ,pointer: %p\n", after, len(after), cap(after), after) //0x1400011e1d8 后半的底层数组已经发生了改变? 还是同一个数组
-	//fmt.Printf("after底层数组地址:%d", getSliceOrigianalAddress(after))
+	//fmt.Infof("after底层数组地址:%d", getSliceOrigianalAddress(after))
 	// append 会触发啥? 这个时候 cap 没变,所以底层数组会不会变呢?
 	newAppend := append(before, after...)
 	// newAppend切片地址 这个地址变了吗?

@@ -1,7 +1,7 @@
 package string_helper
 
 import (
-	"bytes"
+	"strings"
 )
 
 // Reverse 反转字符串 利用i，j来控制首尾两个位置，交换对应位置的元素即可实现字符串反转
@@ -15,9 +15,5 @@ func Reverse(s string) string {
 
 // Concat 结合 string
 func Concat(strs ...string) string {
-	strBuf := bytes.NewBufferString("")
-	for _, s := range strs {
-		strBuf.WriteString(s)
-	}
-	return strBuf.String()
+	return strings.Join(strs, "")
 }
