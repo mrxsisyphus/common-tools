@@ -7,7 +7,7 @@ type LimitTimer struct {
 	wait time.Duration
 }
 
-func (l *LimitTimer) New(wait time.Duration) *LimitTimer {
+func New(wait time.Duration) *LimitTimer {
 	return &LimitTimer{
 		t:    time.NewTimer(wait),
 		wait: wait,
