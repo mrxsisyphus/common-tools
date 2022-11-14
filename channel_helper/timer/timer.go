@@ -25,3 +25,7 @@ func (l *LimitTimer) ResetWithNewDuration(newWait time.Duration) bool {
 	l.wait = newWait
 	return l.t.Reset(newWait)
 }
+
+func (l *LimitTimer) C() <-chan time.Time {
+	return l.t.C
+}
