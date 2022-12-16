@@ -65,6 +65,16 @@ func TimeStrToWithPatternWithCustomLocation(timeStr string, pattern string, loc 
 	return time.ParseInLocation(pattern, timeStr, loc)
 }
 
+// TimeStampToTime 将时间戳(s)转化为time
+func TimeStampToTime(timestamp int64) time.Time {
+	return time.Unix(timestamp, 0)
+}
+
+// MilliTimeStampToTime 将毫秒时间戳(ms)转化为time
+func MilliTimeStampToTime(milliTimStamp int64) time.Time {
+	return time.UnixMilli(milliTimStamp)
+}
+
 // TimeToTimeStr 将time 转换为 timeStr,默认使用 TimeFormatter_Default_DateTime
 func TimeToTimeStr(inputTime time.Time) string {
 	return TimeToStrWithPattern(inputTime, TimeFormatter_Default_DateTime)
