@@ -4,7 +4,7 @@ import "github.com/shopspring/decimal"
 
 var (
 	//ZeroToTen 0-10
-	ZeroToTen []*decimal.Decimal
+	ZeroToTen []decimal.Decimal
 
 	Zero = ZeroToTen[0]
 	One  = ZeroToTen[1]
@@ -24,17 +24,17 @@ func init() {
 	d8 := decimal.NewFromInt(8)
 	d9 := decimal.NewFromInt(9)
 	d10 := decimal.NewFromInt(10)
-	ZeroToTen = []*decimal.Decimal{
-		&d0,
-		&d1,
-		&d2,
-		&d3,
-		&d4,
-		&d5,
-		&d6,
-		&d7,
-		&d8,
-		&d9,
-		&d10,
+	ZeroToTen = []decimal.Decimal{
+		d0,
+		d1,
+		d2,
+		d3,
+		d4,
+		d5,
+		d6,
+		d7,
+		d8,
+		d9,
+		d10,
 	}
 }
