@@ -35,6 +35,7 @@ require (
 	github.com/onsi/ginkgo v1.16.5 // indirect
 	github.com/panjf2000/ants/v2 v2.6.0 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
+	github.com/shopspring/decimal v1.3.1 // indirect
 	go.uber.org/atomic v1.10.0 // indirect
 	go.uber.org/goleak v1.2.0 // indirect
 	go.uber.org/multierr v1.8.0 // indirect
