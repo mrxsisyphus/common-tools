@@ -102,6 +102,22 @@ func GetTimeZoneFromTimeZoneStr(timeZoneStr string) (loc *time.Location, err err
 	return time.LoadLocation(timeZoneStr)
 }
 
+// GetTimeZoneFromTimeZoneStrWithoutErr 如果有问题直接报错 方便初始化
+// 比如:
+//
+//		PRC(Asia/Chongqing) 就是中国时区
+//	    Japan(Asia/Tokyo)  日本时区
+//
+// refer: https://studygolang.com/topics/2192
+// 具体对应$GOROOT/lib/time_helper/zoneinfo.zip
+func GetTimeZoneFromTimeZoneStrWithoutErr(timeZoneStr string) *time.Location {
+	location, err := time.LoadLocation(timeZoneStr)
+	if err != nil {
+		panic(err)
+	}
+	return location
+}
+
 // GetTimeZoneOffsetUTC  通过指定时区 name是你自定义的名字,offset 是距离UTC的偏移量
 // 8*60*60(seconds) 也可用 int((8 * time_helper.Hour).Seconds()) 表示
 //
