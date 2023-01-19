@@ -3,7 +3,7 @@ package random_helper
 import (
 	"fmt"
 	"github.com/mrxtryagin/common-tools/collection_helper"
-	"github.com/mrxtryagin/common-tools/string_helper"
+	"github.com/mrxtryagin/common-tools/convert_helper"
 	"math"
 	"math/rand"
 	"strconv"
@@ -132,7 +132,7 @@ func TestChoices2(t *testing.T) {
 	//fmt.Println(*choice)
 	fmt.Println(len(*choice))
 	res := collection_helper.ToGroupCount[[]int, string](choice, func(inputType []int) string {
-		return string_helper.ToString(inputType)
+		return convert_helper.AnyToString(inputType)
 	})
 	fmt.Println(res)
 }
@@ -154,9 +154,9 @@ func TestChoices3(t *testing.T) {
 	}
 	// 50,40,30,20
 	fmt.Println(prizes)
-	total := collection_helper.ReduceWithInitValue[*Prize, float64](&prizes, func(x *Prize, val float64) float64 {
+	total := collection_helper.ReduceWithInitValue[*Prize, float64](0, &prizes, func(x *Prize, val float64) float64 {
 		return float64(x.Weight) + val
-	}, 0)
+	})
 	for _, prize := range prizes {
 		radio := float64(prize.Weight) / total
 		fmt.Printf("key: %v, val: %v, radio:%v, reverse:%v\n", prize.PlayerId, prize.Weight, radio, 1-radio)

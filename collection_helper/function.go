@@ -94,9 +94,9 @@ func ReduceWithInitValueInSameType[InputType any](input *[]InputType, accumulato
 // - AccumulatorValType any 累加值的类型
 // - accumulator func(x InputType, y AccumulatorValType) AccumulatorValType
 // - initValue AccumulatorValType 初始值
-func ReduceWithInitValue[InputType any, AccumulatorValType any](input *[]InputType, accumulator func(x InputType, y AccumulatorValType) AccumulatorValType, initValue AccumulatorValType) AccumulatorValType {
+func ReduceWithInitValue[InputType any, AccumulatorValType any](initAccumulateVal AccumulatorValType, input *[]InputType, accumulator func(x InputType, accumulateVal AccumulatorValType) AccumulatorValType) AccumulatorValType {
 	raw := *input
-	accumulatorVal := initValue
+	accumulatorVal := initAccumulateVal
 	if len(raw) <= 0 {
 		// 返回初始值
 		return accumulatorVal
