@@ -168,6 +168,8 @@ func (req *DefaultParallelWorkReq[R]) Gather() []*ResultUnit[R] {
 	return result
 }
 
+//todo: 类似于gather 但是是一组一组进行 一组全部完成到下一组 每组的大小为并发大小
+
 // Wait 不保证顺序的一致性
 // 使用顺序调度(组内抢占),但是ParallelSize内按照速度快的排序(利用切片append)
 // 保证执行全部完成(在不会外部打断的情况下)
