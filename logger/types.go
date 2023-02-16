@@ -43,6 +43,12 @@ type ZapOptions struct {
 	OtherOptions []zap.Option
 }
 
+type ZapSimpleOptions struct {
+	OutPutPath  string        //输出文件
+	ZapLogLevel zapcore.Level //level
+
+}
+
 // RotateLogOptions 日志分割相关的配置
 // 目前分为两个 一个是lumberjack(使用大小) 另一个是 rotatelogs(使用时间),目前这里只是整合两者
 type RotateLogOptions struct {

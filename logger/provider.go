@@ -1,12 +1,14 @@
 package logger
 
 import (
+	"fmt"
 	"github.com/mrxtryagin/common-tools/string_helper"
 	"github.com/mrxtryagin/common-tools/time_helper"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"io"
 	"os"
+	"path/filepath"
 	"time"
 )
 
@@ -61,6 +63,35 @@ func NewDefaultConsoleZapLogger() *zap.Logger {
 
 }
 
+// NewDefaultMultiZapLogger 获得defaultMultiZap
+func NewDefaultMultiZapLogger(ops *ZapSimpleOptions) *zap.Logger {
+	//初始化options
+	if ops == nil {
+		ops = &ZapSimpleOptions{
+			OutPutPath:  fmt.Sprintf("%s.log", GetExecuteName()),
+			ZapLogLevel: zap.DebugLevel,
+		}
+	}
+	outPut, _ := os.Create(ops.OutPutPath)
+	writer := io.MultiWriter(os.Stdout, outPut)
+	core := &ZapCore{
+		EncoderConfig: defaultLogEncoderConfig(),
+		EncoderType:   TextEncoder,
+		Writers:       []io.Writer{writer}, // 只有一个stdout
+		LevelEnabler:  ops.ZapLogLevel,
+	}
+	zo := &ZapOptions{
+		Cores: []*ZapCore{core},
+		OtherOptions: []zap.Option{
+			zap.AddCaller(),
+			zap.AddStacktrace(zap.ErrorLevel), //error打堆栈
+			zap.AddCallerSkip(1),              //统一跳一层
+		},
+	}
+	l, _ := zo.NewZapLogger()
+	return l
+}
+
 // defaultLogEncoderConfig 默认日志encoder
 func defaultLogEncoderConfig() *zapcore.EncoderConfig {
 	d := NewDefaultEncoderConfig()
@@ -104,4 +135,9 @@ func EncodeTimePattern1(layout string) zapcore.TimeEncoder {
 // EncodeCallerPattern1  自定义caller,[caller]
 func EncodeCallerPattern1(caller zapcore.EntryCaller, enc zapcore.PrimitiveArrayEncoder) {
 	enc.AppendString(string_helper.Concat("[", caller.TrimmedPath(), "]"))
+}
+
+func GetExecuteName() string {
+	executable, _ := os.Executable()
+	return filepath.Base(executable)
 }

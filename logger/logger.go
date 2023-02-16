@@ -1,14 +1,21 @@
 package logger
 
-import "go.uber.org/zap"
+import (
+	"go.uber.org/zap"
+	"sync"
+)
 
 var (
 	//defaultLogger 默认的logger 用于打印正常的日志信息
 	globalLogger *Logger
+	logInitOnce  sync.Once
 )
 
 func init() {
-	globalLogger = newDefaultLogger()
+	logInitOnce.Do(func() {
+		globalLogger = newDefaultLogger()
+	})
+
 }
 
 // Logger
@@ -35,6 +42,13 @@ func GetLogger() *Logger {
 }
 
 // SetGlobalLogger 设置全局logger
+// 方便整体覆盖
 func SetGlobalLogger(logger *Logger) {
 	globalLogger = logger
+}
+
+// SetGlobalLoggerCore 设置全局loggerCore
+// 方便整体覆盖
+func SetGlobalLoggerCore(logger *zap.Logger) {
+	globalLogger.zapLogger = logger
 }
