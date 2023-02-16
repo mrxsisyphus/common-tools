@@ -45,7 +45,7 @@ func init() {
 func NewDefaultConsoleZapLogger() *zap.Logger {
 	writer := io.MultiWriter(os.Stdout)
 	core := &ZapCore{
-		EncoderConfig: defaultLogEncoderConfig(),
+		EncoderConfig: DefaultLogEncoderConfig(),
 		EncoderType:   TextEncoder,
 		Writers:       []io.Writer{writer}, // 只有一个stdout
 		LevelEnabler:  zapcore.DebugLevel,
@@ -75,7 +75,7 @@ func NewDefaultMultiZapLogger(ops *ZapSimpleOptions) *zap.Logger {
 	outPut, _ := os.Create(ops.OutPutPath)
 	writer := io.MultiWriter(os.Stdout, outPut)
 	core := &ZapCore{
-		EncoderConfig: defaultLogEncoderConfig(),
+		EncoderConfig: DefaultLogEncoderConfig(),
 		EncoderType:   TextEncoder,
 		Writers:       []io.Writer{writer}, // 只有一个stdout
 		LevelEnabler:  ops.ZapLogLevel,
@@ -92,8 +92,8 @@ func NewDefaultMultiZapLogger(ops *ZapSimpleOptions) *zap.Logger {
 	return l
 }
 
-// defaultLogEncoderConfig 默认日志encoder
-func defaultLogEncoderConfig() *zapcore.EncoderConfig {
+// DefaultLogEncoderConfig 默认日志encoder
+func DefaultLogEncoderConfig() *zapcore.EncoderConfig {
 	d := NewDefaultEncoderConfig()
 	//caller
 	d.EncodeCaller = EncodeCallerPattern1
